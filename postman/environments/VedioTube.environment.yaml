@@ -1,0 +1,4 @@
+name: VedioTube
+values:
+  - key: server
+    value: ''

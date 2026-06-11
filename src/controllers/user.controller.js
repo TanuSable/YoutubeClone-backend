@@ -44,7 +44,7 @@ if (existedUser) {
 }
 
 const avatarLocalPath = req.files?.avatar[0].path;
-const coverImageLocalPath = req.files?.coverImage[0].path;
+const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
 
 if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar is required");
@@ -66,7 +66,7 @@ const user = await User.create({
     password,
 });
 
-const createdUser = await user.findOne({_id: user._id}).select(
+const createdUser = await User.findOne({_id: user._id}).select(
     "-password -refreshToken"
 );
 
